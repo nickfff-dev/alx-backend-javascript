@@ -8,4 +8,4 @@ module.exports = function taskBlock(trueOrFalse) {
   }
 
   return [task, task2];
-}
+};
