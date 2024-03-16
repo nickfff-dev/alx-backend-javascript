@@ -1,1 +1,1 @@
-typescript
+typescript for typesafe js
