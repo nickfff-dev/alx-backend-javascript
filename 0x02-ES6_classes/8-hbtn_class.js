@@ -10,19 +10,11 @@ export default class HolbertonClass {
     this._location = location;
   }
 
-  get size() {
+  valueOf() {
     return this._size;
   }
 
-  get location() {
+  toString() {
     return this._location;
-  }
-
-  valueOf() {
-    return this.size;
-  }
-
-  get [Symbol.toStringTag]() {
-    return this.location;
   }
 }
