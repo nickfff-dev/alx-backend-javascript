@@ -6,10 +6,6 @@ export default class SkyHighBuilding extends Building {
     this._floors = floors;
   }
 
-  get sqft() {
-    return super.sqft; // Use the getter from the parent class
-  }
-
   get floors() {
     return this._floors; // Return the floors attribute
   }
