@@ -7,7 +7,7 @@ export default class SkyHighBuilding extends Building {
   }
 
   get floors() {
-    return this._floors; // Return the floors attribute
+    return this._floors;
   }
 
   set floors(floors) {
@@ -18,6 +18,6 @@ export default class SkyHighBuilding extends Building {
   }
 
   evacuationWarningMessage() {
-    return `Evacuate slowly the ${this.floors} floors.`; // Override the method to return a specific string
+    return `Evacuate slowly the ${this._floors} floors.`; // Override the method to return a specific string
   }
 }
