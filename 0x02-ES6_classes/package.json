@@ -1,7 +1,7 @@
 {
 	"name": "es6classes",
-  "version": "1.0.0",
-  "description": "javascript backend",
+	"version": "1.0.0",
+	"description": "javascript backend",
 	"scripts": {
 		"lint": "./node_modules/.bin/eslint",
 		"check-lint": "lint [0-9]*.js",
@@ -22,15 +22,15 @@
 	"repository": {
 		"type": "git",
 		"url": "git+https://github.com/nickfff-dev/alx-backend-javascript.git"
-	  },
-	  "keywords": [
+	},
+	"keywords": [
 		"es6",
 		"basics"
-	  ],
-	  "author": "nickfff-dev",
-	  "license": "ISC",
-	  "bugs": {
+	],
+	"author": "nickfff-dev",
+	"license": "ISC",
+	"bugs": {
 		"url": "https://github.com/nickfff-dev/alx-backend-javascript/issues"
-	  },
-	  "homepage": "https://github.com/nickfff-dev/alx-backend-javascript#readme"
+	},
+	"homepage": "https://github.com/nickfff-dev/alx-backend-javascript#readme"
 }
