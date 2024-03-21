@@ -1,7 +1,8 @@
 export default class Building {
   constructor(sqft) {
     if (this.constructor !== Building) {
-      if (!Object.prototype.hasOwnProperty.call(this.constructor.prototype, 'evacuationWarningMessage')) {
+      const props = Object.getOwnPropertyNames(this.constructor.prototype);
+      if (!props.find((e) => e === 'evacuationWarningMessage')) {
         throw new Error('Class extending Building must override evacuationWarningMessage');
       }
     }
