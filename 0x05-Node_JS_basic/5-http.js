@@ -9,11 +9,11 @@ const app = http.createServer(async (req, res) => {
   } else if (req.url === '/students') {
     try {
       if (process.argv.length !== 3) {
-        res.end('Cannot load the database\n');
+        res.end('Cannot load the database');
       }
       const data = await fs.readFile(process.argv[2], 'utf8');
       if (data === undefined) {
-        res.end('Cannot load the database\n');
+        res.end('Cannot load the database');
       }
       const lines = data.split('\n');
       const students = lines.filter((line, index) => line.trim() !== '' && index !== 0);
