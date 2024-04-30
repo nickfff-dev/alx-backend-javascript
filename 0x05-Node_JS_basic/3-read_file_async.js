@@ -25,7 +25,7 @@ function countStudents(path) {
               fields[field] = [];
             }
             if (lastname === undefined || age === undefined) {
-              throw new Error();
+              reject(new Error('Cannot load the database'));
             }
             fields[field].push(firstname);
           });

@@ -8,20 +8,27 @@ const app = http.createServer(async (req, res) => {
     res.end('Hello Holberton School!');
   } else if (req.url === '/students') {
     try {
+      if (process.argv.length !== 3) {
+        res.end('Cannot load the database\n');
+      }
       const data = await fs.readFile(process.argv[2], 'utf8');
+      if (data === undefined) {
+        res.end('Cannot load the database\n');
+      }
       const lines = data.split('\n');
       const students = lines.filter((line, index) => line.trim() !== '' && index !== 0);
       const fields = {};
 
       students.forEach((student) => {
-        const [firstname, lastname, age, field] = student.split(',');
-        if (!fields[field]) {
-          fields[field] = [];
+        if (student) {
+          const [firstname, lastname, age, field] = student.split(',');
+          if (!fields[field]) {
+            fields[field] = [];
+          }
+          if ((lastname && age)) {
+            fields[field].push(firstname);
+          }
         }
-        if (lastname === undefined || age === undefined) {
-          throw new Error();
-        }
-        fields[field].push(firstname);
       });
 
       res.write('This is the list of our students\n');
@@ -34,7 +41,7 @@ const app = http.createServer(async (req, res) => {
       res.end('Cannot load the database');
     }
   } else {
-    res.end('Not Found');
+    res.end('Cannot load the database');
   }
 });
 
