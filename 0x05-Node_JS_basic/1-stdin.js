@@ -1,14 +1,20 @@
-process.stdout.write('Welcome to Holberton School, what is your name?\n');
+const readline = require('readline');
 
-process.stdout.on('line', () => {
-  const input = process.stdin.read();
-  if (input) {
-    process.stdout.write(`Your name is: ${input}`);
-    process.exit(0);
-  }
+const rl = readline.createInterface({
+  input: process.stdin,
+  output: process.stdout,
 });
 
-process.stdin.on('close', () => {
-  process.stdout.write('This important software is now closing\n');
+console.log('Welcome to Holberton School, what is your name?');
+
+rl.on('line', (input) => {
+  if (input) {
+    console.log(`Your name is: ${input}`);
+  }
+  rl.close();
+});
+
+rl.on('close', () => {
+  console.log('This important software is now closing');
   process.exit(0);
 });
