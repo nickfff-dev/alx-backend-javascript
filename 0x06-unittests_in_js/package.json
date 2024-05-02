@@ -23,7 +23,7 @@
     "url": "https://github.com/nickfff-dev/alx-backend-javascript/issues"
   },
   "homepage": "https://github.com/nickfff-dev/alx-backend-javascript#readme",
-  "dependencies": {
+  "devDependencies": {
     "mocha": "^10.4.0"
   }
 }
