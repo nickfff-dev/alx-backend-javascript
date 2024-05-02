@@ -24,6 +24,7 @@
   },
   "homepage": "https://github.com/nickfff-dev/alx-backend-javascript#readme",
   "devDependencies": {
+    "chai": "^5.1.0",
     "mocha": "^10.4.0"
   }
 }
