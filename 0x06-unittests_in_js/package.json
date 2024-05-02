@@ -1,0 +1,29 @@
+{
+  "name": "0x06-unittests_in_js",
+  "version": "1.0.0",
+  "description": "Basic test with Mocha and Node assertion library",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nickfff-dev/alx-backend-javascript.git"
+  },
+  "keywords": [
+    "mocha",
+    "tests",
+    "node",
+    "tests",
+    "asserion"
+  ],
+  "author": "nickfff-dev",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/nickfff-dev/alx-backend-javascript/issues"
+  },
+  "homepage": "https://github.com/nickfff-dev/alx-backend-javascript#readme",
+  "dependencies": {
+    "mocha": "^10.4.0"
+  }
+}
