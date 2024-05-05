@@ -8,15 +8,7 @@ class StudentsController {
       const fullResponse = [];
       fullResponse.push('This is the list of our students');
       Object.keys(data).sort().forEach((field) => {
-        fullResponse.push(`Number of students in ${field}: ${data[field].length}. List: ${data[field].sort((a, b) => {
-          if (a[0].toLowerCase() < b[0].toLowerCase()) {
-            return -1;
-          }
-          if (a[0].toLowerCase() > b[0].toLowerCase()) {
-            return 1;
-          }
-          return 0;
-        }).join(', ')}`);
+        fullResponse.push(`Number of students in ${field}: ${data[field].length}. List: ${data[field].join(', ')}`);
       });
       res.status(200).send(fullResponse.join('\n'));
     } catch (error) {
@@ -34,7 +26,7 @@ class StudentsController {
     try {
       const data = await readDatabase(path);
       if (data[major]) {
-        return res.status(200).send(`List: ${data[major].join(', ')}`);
+        return res.status(200).send(`List: ${data[major].sort().join(', ')}`);
       }
       return res.status(500).send('Cannot load the database');
     } catch (error) {
