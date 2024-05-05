@@ -1,14 +1,17 @@
 const { readDatabase } = require('../utils');
 
+const DB_FILE = process.argv.length > 2 ? process.argv[2] : '';
+
 class StudentsController {
   static async getAllStudents(req, res) {
     try {
-      const data = await readDatabase('./database.csv');
-      let response = 'This is the list of our students\n';
+      const data = await readDatabase(DB_FILE);
+      const fullResponse = [];
+      fullResponse.push('This is the list of our students');
       Object.keys(data).sort().forEach((field) => {
-        response += `Number of students in ${field}: ${data[field].length}. List: ${data[field].join(', ')}\n`;
+        fullResponse.push(`Number of students in ${field}: ${data[field].length}. List: ${data[field].join(', ')}`);
       });
-      res.status(200).send(response);
+      res.status(200).send(fullResponse.join('\n'));
     } catch (error) {
       res.status(500).send('Cannot load the database');
     }
@@ -20,7 +23,7 @@ class StudentsController {
       return res.status(500).send('Major parameter must be CS or SWE');
     }
     try {
-      const data = await readDatabase('./database.csv');
+      const data = await readDatabase(DB_FILE);
       if (data[major]) {
         return res.status(200).send(`List: ${data[major].join(', ')}`);
       }
