@@ -1,4 +1,4 @@
-const fs = require('fs').promises;
+import * as fs from 'node:fs/promises';
 
 function readDatabase(path) {
   return new Promise((resolve, reject) => {
