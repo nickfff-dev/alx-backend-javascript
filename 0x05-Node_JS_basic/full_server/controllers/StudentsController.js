@@ -6,8 +6,7 @@ class StudentsController {
       const path = process.argv.length > 2 ? process.argv[2] : '';
       const data = await readDatabase(path);
       const testResponse = [];
-      testResponse.push('This is the list of our students');
-      Object.entries(data).sort((a, b) => {
+      const sortFunction = (a, b) => {
         if (a[0].toLowerCase() < b[0].toLowerCase()) {
           return -1;
         }
@@ -15,7 +14,10 @@ class StudentsController {
           return 1;
         }
         return 0;
-      }).forEach(([field, students]) => {
+      };
+      testResponse.push('This is the list of our students');
+
+      Object.entries(data).sort(sortFunction).forEach(([field, students]) => {
         testResponse.push(`Number of students in ${field}: ${students.length}. List: ${students.join(', ')}`);
       });
 
@@ -35,7 +37,7 @@ class StudentsController {
     try {
       const data = await readDatabase(path);
       if (data[major]) {
-        return res.status(200).send(`List: ${data[major].sort().join(', ')}`);
+        return res.status(200).send(`List: ${data[major].join(', ')}`);
       }
       return res.status(500).send('Cannot load the database');
     } catch (error) {
