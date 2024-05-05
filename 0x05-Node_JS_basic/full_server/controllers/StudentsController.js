@@ -17,19 +17,19 @@ class StudentsController {
   }
 
   static async getAllStudentsByMajor(req, res) {
-    const path = process.argv.length > 2 ? process.argv[2] : '';
     const { major } = req.params;
+    const path = process.argv.length > 2 ? process.argv[2] : '';
     if (major !== 'CS' && major !== 'SWE') {
-      return res.status(500).send('Major parameter must be CS or SWE');
+      res.status(500).send('Major parameter must be CS or SWE');
+      return;
     }
     try {
       const data = await readDatabase(path);
       if (data[major]) {
-        return res.status(200).send(`List: ${data[major].join(', ')}`);
+        res.status(200).send(`List: ${data[major].join(', ')}`);
       }
-      return res.status(500).send('Cannot load the database');
     } catch (error) {
-      return res.status(500).send('Cannot load the database');
+      res.status(500).send('Cannot load the database');
     }
   }
 }
