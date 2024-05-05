@@ -1,41 +1,48 @@
-const fs = require('fs').promises;
+import fs from 'fs';
 
-function readDatabase(path) {
-  return new Promise((resolve, reject) => {
-    if (!path) {
-      reject(new Error('Cannot load the database'));
-    }
-    if (typeof path !== 'string') {
-      reject(new Error('Cannot load the database'));
-    }
-    if (path === '') {
-      reject(new Error('Cannot load the database'));
-    }
-    if (path) {
-      fs.readFile(path, 'utf8').then((data, error) => {
-        if (error) {
-          reject(new Error('Cannot load the database'));
+/**
+ * Reads the data of students in a CSV data file.
+ * @param {String} dataPath The path to the CSV data file.
+ * @returns {Promise<{
+ *   String: {firstname: String, lastname: String, age: number}[]
+ * }>}
+ */
+const readDatabase = (dataPath) => new Promise((resolve, reject) => {
+  if (!dataPath) {
+    reject(new Error('Cannot load the database'));
+  }
+  if (dataPath) {
+    fs.readFile(dataPath, (err, data) => {
+      if (err) {
+        reject(new Error('Cannot load the database'));
+      }
+      if (data) {
+        const fileLines = data
+          .toString('utf-8')
+          .trim()
+          .split('\n');
+        const studentGroups = {};
+        const dbFieldNames = fileLines[0].split(',');
+        const studentPropNames = dbFieldNames
+          .slice(0, dbFieldNames.length - 1);
+
+        for (const line of fileLines.slice(1)) {
+          const studentRecord = line.split(',');
+          const studentPropValues = studentRecord
+            .slice(0, studentRecord.length - 1);
+          const field = studentRecord[studentRecord.length - 1];
+          if (!Object.keys(studentGroups).includes(field)) {
+            studentGroups[field] = [];
+          }
+          const studentEntries = studentPropNames
+            .map((propName, idx) => [propName, studentPropValues[idx]]);
+          studentGroups[field].push(Object.fromEntries(studentEntries));
         }
-        if (data) {
-          const lines = data.split('\n');
-          const students = lines.filter((line, index) => line.trim() !== '' && index !== 0);
-          const fields = {};
-          students.forEach((student) => {
-            const [firstname, lastname, age, field] = student.split(',');
-            if (!fields[field]) {
-              fields[field] = [];
-            }
-            if (lastname === undefined || age === undefined) {
-              reject(new Error('Cannot load the database'));
-            }
-            fields[field].push(firstname);
-          });
-          resolve(fields);
-        }
-      });
-    }
-  });
-}
+        resolve(studentGroups);
+      }
+    });
+  }
+});
 
 export default readDatabase;
 module.exports = readDatabase;
