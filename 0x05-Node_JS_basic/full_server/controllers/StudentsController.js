@@ -1,6 +1,6 @@
 const { readDatabase } = require('../utils');
 
-const DB_FILE = process.argv.length > 2 ? process.argv[2] : '';
+const DB_FILE = process.argv.length > 2 ? process.argv[2] : './database.csv';
 
 class StudentsController {
   static async getAllStudents(req, res) {
