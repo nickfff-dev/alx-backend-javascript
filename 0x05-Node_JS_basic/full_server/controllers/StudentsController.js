@@ -7,7 +7,7 @@ class StudentsController {
       const data = await readDatabase(path);
       const fullResponse = [];
       fullResponse.push('This is the list of our students');
-      Object.keys(data).sort().forEach((field) => { 
+      Object.keys(data).sort().forEach((field) => {
         fullResponse.push(`Number of students in ${field}: ${data[field].length}. List: ${data[field].sort((a, b) => {
           if (a[0].toLowerCase() < b[0].toLowerCase()) {
             return -1;
