@@ -1,10 +1,10 @@
 import express from 'express';
-import makeRoutes from './routes';
+import routes from './routes/index';
 
 const app = express();
 const PORT = 1245;
+app.use('/', routes);
 
-makeRoutes(app);
 app.listen(PORT, () => {
   console.log(`Server listening on port ${PORT}`);
 });
