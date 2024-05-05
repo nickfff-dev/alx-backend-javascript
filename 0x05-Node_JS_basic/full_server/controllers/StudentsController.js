@@ -5,12 +5,13 @@ class StudentsController {
     try {
       const path = process.argv.length > 2 ? process.argv[2] : '';
       const data = await readDatabase(path);
-      const fullResponse = [];
-      fullResponse.push('This is the list of our students');
-      Object.keys(data).sort().forEach((field) => {
-        fullResponse.push(`Number of students in ${field}: ${data[field].length}. List: ${data[field].join(', ')}`);
+      const testResponse = [];
+      testResponse.push('This is the list of our students');
+      Object.entries(data).sort().forEach(([field, students]) => {
+        testResponse.push(`Number of students in ${field}: ${students.length}. List: ${students.join(', ')}`);
       });
-      res.status(200).send(fullResponse.join('\n'));
+
+      res.status(200).send(testResponse.join('\n'));
     } catch (error) {
       res.status(500).send('Cannot load the database');
     }
