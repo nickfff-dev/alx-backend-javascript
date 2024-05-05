@@ -11,8 +11,8 @@ class StudentsController {
         fullResponse.push(`Number of students in ${field}: ${data[field].length}. List: ${data[field].join(', ')}`);
       });
       res.status(200).send(fullResponse.join('\n'));
-    } catch (err) {
-      res.status(500).send(err instanceof Error ? err.message : err.toString());
+    } catch (error) {
+      res.status(500).send('Cannot load the database');
     }
   }
 
@@ -28,8 +28,8 @@ class StudentsController {
       if (data[major]) {
         res.status(200).send(`List: ${data[major].join(', ')}`);
       }
-    } catch (err) {
-      res.status(500).send(err instanceof Error ? err.message : err.toString());
+    } catch (error) {
+      res.status(500).send('Cannot load the database');
     }
   }
 }
