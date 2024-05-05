@@ -7,7 +7,15 @@ class StudentsController {
       const data = await readDatabase(path);
       const testResponse = [];
       testResponse.push('This is the list of our students');
-      Object.entries(data).sort().forEach(([field, students]) => {
+      Object.entries(data).sort((a, b) => {
+        if (a[0].toLowerCase() < b[0].toLowerCase()) {
+          return -1;
+        }
+        if (a[0].toLowerCase() > b[0].toLowerCase()) {
+          return 1;
+        }
+        return 0;
+      }).forEach(([field, students]) => {
         testResponse.push(`Number of students in ${field}: ${students.length}. List: ${students.join(', ')}`);
       });
 
